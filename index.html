@@ -52,27 +52,53 @@
             min-height: 50px;
         }
     </style>
+    <script>
+        function showPage(pageId) {
+            var pages = document.getElementsByClassName('content');
+            for (var i = 0; i < pages.length; i++) {
+                pages[i].style.display = 'none';
+            }
+            document.getElementById(pageId).style.display = 'block';
+        }
+
+        function loadContent() {
+            document.querySelectorAll('.editable').forEach(function (element) {
+                let savedContent = localStorage.getItem(element.id);
+                if (savedContent) {
+                    element.innerHTML = savedContent;
+                }
+                element.addEventListener('input', function () {
+                    localStorage.setItem(element.id, element.innerHTML);
+                });
+            });
+        }
+
+        window.onload = function() {
+            showPage('home');
+            loadContent();
+        };
+    </script>
 </head>
 <body>
     <div class="navbar">
-        <a href="#home">Home</a>
-        <a href="#art">Art</a>
-        <a href="#drama">Drama and Puppetry</a>
-        <a href="#movement">Movement and Music</a>
-        <a href="#language">Language and Literacy</a>
-        <a href="#science">Science</a>
-        <a href="#engineering">Engineering</a>
-        <a href="#technologies">Technologies</a>
-        <a href="#math">Mathematics and Numeracy</a>
-        <a href="#humanities">Humanities and Social Sciences</a>
-        <a href="#integrated">Integrated Curriculum</a>
-        <a href="#conclusion">Conclusion</a>
-        <a href="#references">References</a>
+        <a onclick="showPage('home')">Home</a>
+        <a onclick="showPage('art')">Art</a>
+        <a onclick="showPage('drama')">Drama and Puppetry</a>
+        <a onclick="showPage('movement')">Movement and Music</a>
+        <a onclick="showPage('language')">Language and Literacy</a>
+        <a onclick="showPage('science')">Science</a>
+        <a onclick="showPage('engineering')">Engineering</a>
+        <a onclick="showPage('technologies')">Technologies</a>
+        <a onclick="showPage('math')">Mathematics and Numeracy</a>
+        <a onclick="showPage('humanities')">Humanities and Social Sciences</a>
+        <a onclick="showPage('integrated')">Integrated Curriculum</a>
+        <a onclick="showPage('conclusion')">Conclusion</a>
+        <a onclick="showPage('references')">References</a>
     </div>
 
-    <div class="container">
-        <div class="content" id="home">
-            <h1>Creativity in Early Childhood Curriculum</h1>
+    <div class="content" id="home">
+                <h1>Creativity in Early Childhood Curriculum</h1>
+        <div id="home-content" class="editable" contenteditable="true">
             <h2>Introduction</h2>
             <p>Creativity is a fundamental aspect of early childhood education, shaping children's ability to think critically, solve problems, and express themselves. It is not limited to the arts but extends into every learning area, including language and literacy, mathematics, science, and technology. By integrating creativity into the curriculum, early childhood educators can foster children's natural curiosity and encourage them to explore, experiment, and innovate (Mayesky, 2015).</p>
             
